@@ -3,7 +3,6 @@ library(readr)
 library(ggplot2)
 library(tidyverse)
 library(summarytools)
-library(dplyr)
 library(viridis)
 library(hrbrthemes)
 
@@ -12,11 +11,11 @@ name <- "PBS-DLS 50:50"
 
 # two diffrent files options
 
-# file <- "5050 1"
-# PVA <- "PVA 72k"
+file <- "5050 CPt"
+PVA <- "PVA 72k"
 
-file <- "5050"
-PVA <- "PVA 13k"
+# file <- "5050"
+# PVA <- "PVA 13k"
 
 # Łączenie plików i oblicznie średnicy dla 100 RPM 
 
@@ -296,7 +295,7 @@ ggplot(df1, aes(x=x, y=y)) +
   xlab("Prędkość mieszania") +
   ggtitle(paste0("Zawartość frakcji <20 µm ",name,""))
 
-ggsave(filename = paste0("figures/",PVA,"",file,"frakcji20.png"), dpi = 600)
+ggsave(filename = paste0("figures/",PVA,"",file,"frakcji20.png"), width = 15, height = 10, scale = 0.5, dpi = 600)
 
 # dla 20-40 ?m for 
 
@@ -312,11 +311,11 @@ ggplot(df2, aes(x=x, y=y)) +
   xlab("Prędkość mieszania") +
   ggtitle(paste0("Zawartość frakcji 20-40 µm ",name,""))
 
-ggsave(filename = paste0("figures/",PVA,"",file,"frakcji2040.png"), dpi = 600)
+ggsave(filename = paste0("figures/",PVA,"",file,"frakcji2040.png"), width = 15, height = 10, scale = 0.5, dpi = 600)
 
 # dla >40 ?m for
 
-df3 <- data.frame(x=c("100rpm","200rpm","300RPM", "400rpm"), y=c(wieksze$n, wieksze1$n, wieksze2$n, wieksze3$n))
+df3 <- data.frame(x=c("100rpm","200rpm","300rpm", "400rpm"), y=c(wieksze$n, wieksze1$n, wieksze2$n, wieksze3$n))
 
 
 ggplot(df3, aes(x=x, y=y)) +
@@ -328,4 +327,4 @@ ggplot(df3, aes(x=x, y=y)) +
   xlab("Prędkość mieszania") +
   ggtitle(paste0("Zawartość frakcji >40 µm ",name,""))
 
-ggsave(filename = paste0("figures/",PVA,"",file,"frakcji40.png"), dpi = 600)
+ggsave(filename = paste0("figures/",PVA,"",file,"frakcji40.png"), width = 15, height = 10, scale = 0.5, dpi = 600)

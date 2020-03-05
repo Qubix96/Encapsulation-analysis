@@ -39,13 +39,12 @@ h <- ggplot(dc, aes(x = Size)) +
   ggtitle(paste0("Rozkład wielkości kapsułek dla " ,name,"")) +
   theme_light()
 
-ggsave(filename = paste0("figures/", file,"hist.png"), dpi = 600)
+ggsave(filename = paste0("figures/", file,"hist.png"), width = 15, height = 10, scale = 0.5, dpi = 600)
 
 x <- summarytools::descr(dc)
 
 write.xlsx(x, paste0("stat/", file,"podstawowe.xlsx"))
 
-view(x)
 
 
 
@@ -92,7 +91,7 @@ b <- ggplot(tab2, aes(x=name, y=Size, fill=name)) +
   xlab("Gęstość")+
   ylab("Wielkość [µm]")
 
-ggsave(filename = paste0("figures/", file,"violinbox.png"), dpi = 600)
+ggsave(filename = paste0("figures/", file,"violinbox.png"), width = 15, height = 10, scale = 0.5, dpi = 600)
 
 # Procentowa zawartość
 

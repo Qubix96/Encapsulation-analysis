@@ -6,8 +6,8 @@ library(dplyr)
 library(viridis)
 library(hrbrthemes)
 
-file <- "5050"
-name <- "PBS-DLS 50:50"
+file <- "7030"
+name <- "PBS-DLS 70:30"
 
 # PVA 13k-23k
 
@@ -559,7 +559,7 @@ ggplot(df1, aes(x=x, y=y)) +
   xlab("Speed") +
   ggtitle(paste0("Zawartość frakcji <20 µm ",name,""))
   
-ggsave(filename = paste0("figures/", file,"frakcji20.png"), dpi = 600)
+ggsave(filename = paste0("figures/", file,"frakcji20.png"), width = 15, height = 10, scale = 0.5, dpi = 600)
 
 # dla 20-40 µm for 
 
@@ -576,7 +576,7 @@ ggplot(df2, aes(x=x, y=y)) +
   xlab("Prędkość") +
   ggtitle(paste0("Zawartość frakcji 20-40 µm ",name,""))
   
-ggsave(filename = paste0("figures/", file,"frakcji2040.png"), dpi = 600)
+ggsave(filename = paste0("figures/", file,"frakcji2040.png"), width = 15, height = 10, scale = 0.5, dpi = 600)
 # dla >40 µm for
 
 df3 <- data.frame(x=c("100rpm*","200rpm*","300rpm*", "400rpm*","100rpm**","200rpm**","300rpm**", "400rpm**"), 
@@ -593,4 +593,4 @@ ggplot(df3, aes(x=x, y=y)) +
   ggtitle(paste0("Zawartość frakcji >40 µm ",name,""))
 
 
-ggsave(filename = paste0("figures/", file,"frakcji40.png"), dpi = 600)
+ggsave(filename = paste0("figures/", file,"frakcji40.png"), width = 15, height = 10, scale = 0.5, dpi = 600)

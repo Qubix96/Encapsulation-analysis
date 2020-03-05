@@ -7,8 +7,8 @@ library(hrbrthemes)
 library(xlsx)
 
 # Łączenie plików i oblicznie średnicy
-file <- "100 5050 1"
-name <- "PBS-DLS 50:50"
+file <- "CPt 400 7030"
+name <- "PBS-DLS 70:30 CPt"
 
 mydir = paste0("data/PVA 72k//", file, "")
 myfiles = list.files(path=mydir, pattern="*.csv", full.names=TRUE)
@@ -34,18 +34,17 @@ h <- ggplot(dc, aes(x = Size)) +
                  linetype="dashed") +
   xlab("Rozmiar mikrosfer [µm]")+
   ylab("Ilość") +
-  # ylim(0, 700) + pamiętać, że do posteru
   scale_x_continuous(name = "Rozmiar mikrosfer [µm]", breaks = c(0,10,20,30,40,50,60,70,80,90,100), limits = c(0,100))+
   ggtitle(paste0("Rozkład wielkości kapsułek dla " ,name,"")) +
   theme_light()
 
-ggsave(filename = paste0("figures/", file,"hist.png"), dpi = 600)
+ggsave(filename = paste0("figures/", file,"hist.png"), width = 15, height = 10, scale = 0.5, dpi = 600)
 
 x <- summarytools::descr(dc)
 
 write.xlsx(x, paste0("stat/", file,"podstawowe.xlsx"))
 
-view(x)
+dev.off()
 
 
 
@@ -92,8 +91,8 @@ b <- ggplot(tab2, aes(x=name, y=Size, fill=name)) +
   xlab("Gęstość")+
   ylab("Wielkość [µm]")
 
-ggsave(filename = paste0("figures/", file,"violinbox.png"), dpi = 600)
-
+ggsave(filename = paste0("figures/", file,"violinbox.png"), width = 15, height = 10, scale = 0.5, dpi = 600)
+dev.off()
 # Procentowa zawartość
 
 q <- count(dc)
@@ -127,17 +126,18 @@ tab4 <- merge(tab3, row.names = name, wieksze, row.names = name, all = T)
 
 # circlepolot
 
-library(plotrix)
+
 
 
 pct <- round(tab4$n*100)
 lbs <- paste(tab4$name, pct)
 lbs <- paste(lbs,"%", sep = "")
 
-png(filename = paste0("figures/",file,"piechart.png"), units="px", width=1600, height=1600, res=300)
-pie3D(tab4$n,labels=lbs,explode=0.05, col = c("gold", "red", "orange"),
+png(filename = paste0("figures/",file,"piechart.png"), units="px", width=2000, height=1600, res=300)
+pie(tab4$n,labels=lbs, col = c("gold", "red", "orange"),
       main=paste0("Procentowa zawartość frakcji ",name,""))
 dev.off()
+
 
 # Wywoływanie 
 # b - violin plot; 
