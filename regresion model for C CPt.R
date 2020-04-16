@@ -103,3 +103,13 @@ ggplot(data = data2, aes(x = rpm, y = proc, fill = labels, na.rm = T))+
   
 ggsave(filename = "figures/regresja/compareRPM.png", width = 15, height = 10, scale = 0.5, dpi = 600)
 dev.off()
+
+
+# Statystyka porównawcza dla uwalniania
+stdat <- data1 %>% 
+  select(Day, extABS73, extABS55)
+
+drop_na(stdat)
+
+stat <- kruskal.test(stdat$extABS73~stdat$extABS55)
+

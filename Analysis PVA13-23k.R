@@ -7,8 +7,8 @@ library(hrbrthemes)
 library(xlsx)
 
 # Łączenie plików i oblicznie średnicy
-file <- "100 5050"
-name <- "PBS-DLS 50:50"
+file <- "400 7030"
+name <- "PBS-DLS 70:30"
 
 mydir = paste0("data/PVA 13k/", file, "")
 myfiles = list.files(path=mydir, pattern="*.csv", full.names=TRUE)
@@ -133,9 +133,9 @@ pct <- round(tab4$n*100)
 lbs <- paste(tab4$name, pct)
 lbs <- paste(lbs,"%", sep = "")
 
-png(filename = paste0("figures/",file,"piechart.png"), units="px", width=1600, height=1600, res=300)
-pie3D(tab4$n,labels=lbs,explode=0.05, col = c("gold", "red", "orange"),
-      main=paste0("Procentowa zawartość frakcji ",name,""))
+png(filename = paste0("figures/",file,"piechart.png"), units="px", width=2000, height=1600, res=300)
+pie(tab4$n,labels=lbs, col = c("gold", "red", "orange"),
+    main=paste0("Procentowa zawartość frakcji ",name,""))
 dev.off()
 
 # Wywoływanie 

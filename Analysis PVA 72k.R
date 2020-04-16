@@ -7,8 +7,8 @@ library(hrbrthemes)
 library(xlsx)
 
 # Łączenie plików i oblicznie średnicy
-file <- "CPt 400 7030"
-name <- "PBS-DLS 70:30 CPt"
+file <- "after 100 7030"
+name <- "PBS-DLS 70:30"
 
 mydir = paste0("data/PVA 72k//", file, "")
 myfiles = list.files(path=mydir, pattern="*.csv", full.names=TRUE)

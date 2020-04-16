@@ -7,11 +7,11 @@ name <- "PBS-DLS 50:50"
 
 # two diffrent files options
 
-# file <- "5050 1"
-# PVA <- "PVA 72k"
-
-file <- "5050"
-PVA <- "PVA 13k"
+file <- "5050 CPt"
+PVA <- "PVA 72k"
+# # 
+# file <- "7030"
+# PVA <- "PVA 13k"
 
 # 100 RPM 55
 

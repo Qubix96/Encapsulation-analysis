@@ -1,18 +1,18 @@
 library(tidyverse)
-library(plyr)
+library(dplyr)
 library(ggplot2)
 library(readr)
 library(xlsx)
 
-name <- "PBS-DLS 70:30"
+name <- "PBS-DLS 50:50"
 
 # two diffrent files options
 
-# file <- "5050 1"
-# PVA <- "PVA 72k"
+file <- "5050 CPt"
+PVA <- "PVA 72k"
 
-file <- "7030"
-PVA <- "PVA 13k"
+# file <- "5050"
+# PVA <- "PVA 13k"
 
 # 100 RPM 
 
@@ -101,10 +101,11 @@ kwantyl <- ggplot(tab3, aes(sample = d)) +
 
 ggsave(filename = paste0("figures/",PVA,"",file,"QQPLOT.png"), width = 15, height = 10, scale = 0.5, dpi = 600)
 
+
 stat <- kruskal.test(tab3$d~tab3$RPM)
 
 
-write.xlsx(as.data.frame(stat), paste0("stat/", file,"kruskaltest.xlsx"))
+
 
 
 library(FSA)
@@ -112,7 +113,3 @@ library(FSA)
 DT <- dunnTest(tab3$d~as.factor(tab3$RPM),
                method="bh")
 
-x <- as.data.frame.table(DT)
-
-
-write.xlsx(x, paste0("stat/", file,"dunntest.xlsx"))

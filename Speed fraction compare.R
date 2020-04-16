@@ -7,11 +7,11 @@ library(viridis)
 library(hrbrthemes)
 
 
-name <- "PBS-DLS 50:50"
+name <- "PBS-DLS 70:30"
 
 # two diffrent files options
 
-file <- "5050 CPt"
+file <- "7030 CPt"
 PVA <- "PVA 72k"
 
 # file <- "5050"
@@ -286,45 +286,62 @@ tab43 <- tab43 %>%
 df1 <- data.frame(x=c("100rpm","200rpm","300rpm", "400rpm"), y=c(mniejsze$n, mniejsze1$n, mniejsze2$n, mniejsze3$n))
 
 
-ggplot(df1, aes(x=x, y=y)) +
-  geom_line( color="grey") +
-  geom_point(shape=21, color="black", fill="#69b3a2", size=6) +
-  theme_ipsum() +
-  scale_y_continuous(limits = c(0,1)) +
-  ylab("Proportion") +
-  xlab("Prędkość mieszania") +
-  ggtitle(paste0("Zawartość frakcji <20 µm ",name,""))
-
-ggsave(filename = paste0("figures/",PVA,"",file,"frakcji20.png"), width = 15, height = 10, scale = 0.5, dpi = 600)
+# ggplot(df1, aes(x=x, y=y)) +
+#   geom_line( color="grey") +
+#   geom_point(shape=21, color="black", fill="#69b3a2", size=6) +
+#   theme_ipsum() +
+#   scale_y_continuous(limits = c(0,1)) +
+#   ylab("Proportion") +
+#   xlab("Prędkość mieszania") +
+#   ggtitle(paste0("Zawartość frakcji <20 µm ",name,""))
+# 
+# ggsave(filename = paste0("figures/",PVA,"",file,"frakcji20.png"), width = 15, height = 10, scale = 0.5, dpi = 600)
 
 # dla 20-40 ?m for 
 
 df2 <- data.frame(x=c("100rpm","200rpm","300rpm", "400rpm"), y=c(frakcja$n, frakcja1$n, frakcja2$n, frakcja3$n))
 
 
-ggplot(df2, aes(x=x, y=y)) +
-  geom_line( color="grey") +
-  geom_point(shape=21, color="black", fill="#69b3a2", size=6) +
-  theme_ipsum() +
-  scale_y_continuous(limits = c(0,1)) +
-  ylab("Proporcja") +
-  xlab("Prędkość mieszania") +
-  ggtitle(paste0("Zawartość frakcji 20-40 µm ",name,""))
-
-ggsave(filename = paste0("figures/",PVA,"",file,"frakcji2040.png"), width = 15, height = 10, scale = 0.5, dpi = 600)
+# ggplot(df2, aes(x=x, y=y)) +
+#   geom_line( color="grey") +
+#   geom_point(shape=21, color="black", fill="#69b3a2", size=6) +
+#   theme_ipsum() +
+#   scale_y_continuous(limits = c(0,1)) +
+#   ylab("Proporcja") +
+#   xlab("Prędkość mieszania") +
+#   ggtitle(paste0("Zawartość frakcji 20-40 µm ",name,""))
+# 
+# ggsave(filename = paste0("figures/",PVA,"",file,"frakcji2040.png"), width = 15, height = 10, scale = 0.5, dpi = 600)
 
 # dla >40 ?m for
 
 df3 <- data.frame(x=c("100rpm","200rpm","300rpm", "400rpm"), y=c(wieksze$n, wieksze1$n, wieksze2$n, wieksze3$n))
 
 
-ggplot(df3, aes(x=x, y=y)) +
-  geom_line( color="grey") +
-  geom_point(shape=21, color="black", fill="#69b3a2", size=6) +
-  theme_ipsum() +
-  scale_y_continuous(limits = c(0,1)) +
+# ggplot(df3, aes(x=x, y=y)) +
+#   geom_line( color="grey") +
+#   geom_point(shape=21, color="black", fill="#69b3a2", size=6) +
+#   theme_ipsum() +
+#   scale_y_continuous(limits = c(0,1)) +
+#   ylab("Proporcja") +
+#   xlab("Prędkość mieszania") +
+#   ggtitle(paste0("Zawartość frakcji >40 µm ",name,""))
+# 
+# ggsave(filename = paste0("figures/",PVA,"",file,"frakcji40.png"), width = 15, height = 10, scale = 0.5, dpi = 600)
+
+df1$Wielkość <- as.character('< 20µm')
+
+df2$Wielkość <- as.character("20-40µm")
+
+df3$Wielkość <- as.character("> 40µm")
+
+df <- rbind(df1, df2, df3)
+
+ggplot(data = df, aes(x = x, y = y, fill = Wielkość)) +
+  geom_col(position = "dodge2") +
   ylab("Proporcja") +
   xlab("Prędkość mieszania") +
-  ggtitle(paste0("Zawartość frakcji >40 µm ",name,""))
+  ggtitle("Zawartość frakcji") +
+  theme_bw()
 
-ggsave(filename = paste0("figures/",PVA,"",file,"frakcji40.png"), width = 15, height = 10, scale = 0.5, dpi = 600)
+ggsave(filename = paste0("figures/", file,"frakcje.png"), width = 15, height = 10, scale = 0.5, dpi = 600)
